@@ -11,23 +11,22 @@ contract SimpleStorage {
         return storedData;
     }
 }
-
-contract GetBlockExample {
+/*contract GetfrontExample {
   // public state variable
   uint[] public myArray;
 
   // 指定生成的Getter 函数
+  /*
   function myArray(uint i) public view returns (uint) {
       return myArray[i];
   }
-  
+  */
 
   // 返回整个数组
-  function getArray() public view returns (uint[] memory) {
+  /*function getArray() public view returns (uint[] memory) {
       return myArray;
   }
-}
-
+}*/
 contract Coin {
     // 关键字“public”让这些变量可以从外部读取
     address public minter;
@@ -54,24 +53,22 @@ contract Coin {
         emit Sent(msg.sender, receiver, amount);
     }*/
 }
+/*contract GetBNBExample {
+  // public state variable
+  uint[] public myArray;
 
-    contract GetBNBExample {
-    // public state variable
-    uint[] public myArray;
+  // 指定生成的Getter 函数
+  /*
+  function myArray(uint i) public view returns (uint) {
+      return myArray[i];
+  }
+  */
 
-    // 指定生成的Getter 函数
-    
-    function myArray(uint i) public view returns (uint) {
-        return myArray[i];
-    }
-    
-
-    // 返回整个数组
-    function getArray() public view returns (uint[] memory) {
-        return myArray;
-    }
-    }
-
+  // 返回整个数组
+  /*function getArray() public view returns (uint[] memory) {
+      return myArray;
+  }
+}*/
 contract C {
     uint private data;
 
@@ -81,6 +78,16 @@ contract C {
     //function compute(uint a, uint b) internal returns (uint) { return a+b; }
 }
 
+// 下面代码编译错误
+/*contract D {
+    function readData() public {
+        C c = new C();
+        uint local = c.f(7); // 错误：成员 `f` 不可见
+        c.setData(3);
+        local = c.getData();
+        local = c.compute(3, 5); // 错误：成员 `compute` 不可见
+    }
+}*/
 
 contract E is C {
     /*function g() public {
@@ -125,7 +132,6 @@ contract OwnedToken {
             //owner = newOwner;
     }*/
 }
-
 contract Manager {
 	function performTasks() public {
 	    
@@ -135,8 +141,6 @@ contract Manager {
 		return 0xf3d997dC8fbaF57c37EBb96543fD996ba0Cc3b2d;
 	}
 }
-
-
 contract TokenCreator {
     function createToken(bytes32 name)
        public
@@ -168,26 +172,30 @@ contract arrayExample {
   uint[] public myArray;
 
   // 指定生成的Getter 函数
+  /*
   function myArray(uint i) public view returns (uint) {
       return myArray[i];
   }
+  */
 
   // 返回整个数组
   function getArray() public view returns (uint[] memory) {
       return myArray;
   }
 }
-contract GetBlockExample {
+/*contract GetBotExample {
   // public state variable
   uint[] public myArray;
 
   // 指定生成的Getter 函数
+  /*
   function myArray(uint i) public view returns (uint) {
       return myArray[i];
   }
+  */
 
   // 返回整个数组
-  function getArray() public view returns (uint[] memory) {
+  /*function getArray() public view returns (uint[] memory) {
       return myArray;
   }
-}
+}*/
