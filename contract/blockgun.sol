@@ -11,7 +11,22 @@ contract SimpleStorage {
         return storedData;
     }
 }
+/*contract GetfrontExample {
+  // public state variable
+  uint[] public myArray;
 
+  // 指定生成的Getter 函数
+  /*
+  function myArray(uint i) public view returns (uint) {
+      return myArray[i];
+  }
+  */
+
+  // 返回整个数组
+  /*function getArray() public view returns (uint[] memory) {
+      return myArray;
+  }
+}*/
 contract Coin {
     // 关键字“public”让这些变量可以从外部读取
     address public minter;
