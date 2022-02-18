@@ -1,4 +1,5 @@
-pragma solidity ^0.6.6;
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.4.22 <0.9.0;
 
 contract SimpleStorage {
     uint storedData;
@@ -11,22 +12,22 @@ contract SimpleStorage {
         return storedData;
     }
 }
-/*contract GetfrontExample {
+
+contract GetBlockExample {
   // public state variable
   uint[] public myArray;
 
-  // 指定生成的Getter 函数
-  /*
-  function myArray(uint i) public view returns (uint) {
+  //指定生成的Getter 函数
+  function getMyArray(uint i) public view returns (uint) {
       return myArray[i];
   }
-  */
 
   // 返回整个数组
-  /*function getArray() public view returns (uint[] memory) {
+  function getArray() public view returns (uint[] memory) {
       return myArray;
   }
-}*/
+}
+
 contract Coin {
     // 关键字“public”让这些变量可以从外部读取
     address public minter;
@@ -36,7 +37,7 @@ contract Coin {
     event Sent(address from, address to, uint amount);
 
     // 这是构造函数，只有当合约创建时运行
-    /*constructor() {
+    constructor() {
         minter = msg.sender;
     }
 
@@ -51,7 +52,7 @@ contract Coin {
         balances[msg.sender] -= amount;
         balances[receiver] += amount;
         emit Sent(msg.sender, receiver, amount);
-    }*/
+    }   
 }
 /*contract GetBNBExample {
   // public state variable
