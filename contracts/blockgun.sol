@@ -1,15 +1,62 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
+/*
+By ToCarton
+这是一个学习示例
+合约的语法是非常类似面向对象语言， 结构有点像C++，Python，JS的结合
+一个合约结构包括 State Variables, Functions, Function Modifiers, Events, Errors, Struct Types and Enum Types
+合约可以继承合约
+*/
 
 contract SimpleStorage {
-    uint storedData;
-
-    function set(uint x) public {
+    uint storedData;    //状态变量  State Variables
+    address seller;
+    address ownerAddress;
+    
+    //funtion   函数，设置状态变量的值， 有以下四种类型
+    //public:   任何人都可以调用该函数，包括DApp的使用者。
+    //private:  只有合约本身可以调用该函数（在另一个函数中）。
+    //internal: 只有这份合同以及由此产生的所有合同才能称之为合同。
+    //external: 只有外部可以调用该函数，而合约内部不能调用。
+    function setStoreDate(uint x) public payable{ 
         storedData = x;
+        emit HighestBidIncreased(msg.sender, msg.value); // 触发事件 event
     }
 
-    function get() public view returns (uint) {
+    //时间
+    event HighestBidIncreased(address bidder, uint amount); // Event
+
+    //Solidity 会用到三种修饰符 
+    //view ，可以自由调用，查看区块链的状态值，但不会改变它
+    //pure， 仅调用，既不能读取也不写入区块链
+    //payable  经常用于代币发送到合约地址。写入block区块链。
+    function getStoredData() public view returns (uint) { //函数，获取状态变量的值
         return storedData;
+    }
+
+    function bid() public payable {
+        // ...支付
+    }
+ 
+
+    //结构体 Struct
+    struct Mine{
+        address addr;
+        uint    balance;
+        string  token;
+    }
+
+    //Modifer
+    modifier onlySeller() { // Modifier
+        require(
+            msg.sender == seller,
+            "Only seller can call this."
+        );
+        _;
+    }
+
+    function abort() public view onlySeller { // Modifier usage
+        // ...
     }
 }
 
@@ -54,22 +101,7 @@ contract Coin {
         emit Sent(msg.sender, receiver, amount);
     }   
 }
-/*contract GetBNBExample {
-  // public state variable
-  uint[] public myArray;
 
-  // 指定生成的Getter 函数
-  /*
-  function myArray(uint i) public view returns (uint) {
-      return myArray[i];
-  }
-  */
-
-  // 返回整个数组
-  /*function getArray() public view returns (uint[] memory) {
-      return myArray;
-  }
-}*/
 contract C {
     uint private data;
 
@@ -90,6 +122,7 @@ contract C {
     }
 }*/
 
+//继承C
 contract E is C {
     /*function g() public {
         C c = new C();
@@ -135,7 +168,6 @@ contract OwnedToken {
 }
 contract Manager {
 	function performTasks() public {
-	    
 	}
 
 	function uniswapDepositAddress() public pure returns (address) {
@@ -143,13 +175,10 @@ contract Manager {
 	}
 }
 contract TokenCreator {
-    function createToken(bytes32 name)
-       public
-       returns (OwnedToken tokenAddress)
-    {
+    function createToken(bytes32 name)   public
+       returns (OwnedToken tokenAddress)   {
         // 创建一个新的 Token 合约并且返回它的地址。
-        // 从 JavaScript 方面来说，返回类型是简单的 `address` 类型，因为
-        // 这是在 ABI 中可用的最接近的类型。
+        // 返回类型是简单的 `address` 类型，因为这是在 ABI 中可用的最接近的类型。
         return new OwnedToken(name);
     }
 
@@ -158,15 +187,6 @@ contract TokenCreator {
         tokenAddress.changeName(name);
     }
 
-    /*function isTokenTransferOK(address currentOwner, address newOwner)
-        public
-        view
-        returns (bool ok)
-    {
-        // 检查一些任意的情况。
-        address tokenAddress = msg.sender;
-        return (keccak256(newOwner) & 0xff) == (bytes20(tokenAddress) & 0xff);
-    }*/
 }
 contract arrayExample {
   // public state variable
@@ -184,19 +204,3 @@ contract arrayExample {
       return myArray;
   }
 }
-/*contract GetBotExample {
-  // public state variable
-  uint[] public myArray;
-
-  // 指定生成的Getter 函数
-  /*
-  function myArray(uint i) public view returns (uint) {
-      return myArray[i];
-  }
-  */
-
-  // 返回整个数组
-  /*function getArray() public view returns (uint[] memory) {
-      return myArray;
-  }
-}*/
